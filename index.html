@@ -729,6 +729,13 @@
     body.ar nav { direction: rtl; }
     body.ar .nav-right { flex-direction: row-reverse; }
     body.ar .hero-btns, body.ar .hero-stats { justify-content: flex-start; }
+    body.ar .hero { align-items: flex-end; text-align: right; max-width: 100%; width: 100%; padding-left: 20vw; padding-right: 8vw; }
+    body.ar .hero p { text-align: right; }
+    body.ar .hero h1 { text-align: right; }
+    body.ar .hero-badge { align-self: flex-end; }
+    body.ar .hero-stats { flex-direction: row-reverse; justify-content: flex-end; }
+    body.ar .stat-item { align-items: flex-end; }
+    body.ar .hero-btns { justify-content: flex-end; width: 100%; }
     body.ar .contact-item { flex-direction: row-reverse; }
     body.ar .btn-send { align-self: flex-start; }
 
@@ -1399,7 +1406,7 @@
     <div class="work-grid">
       <article class="work-card work-card-large" id="brandCard" onclick="openBrandGallery()" style="cursor:pointer;">
         <div class="work-cover work-cover-1" style="position:relative;overflow:hidden;">
-          <img src="FOHDO_Plan de travail 1.png" alt="Brand Identity" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img id="brandCover" src="FOHDO_Plan de travail 1.png" alt="Brand Identity" style="width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.6s;">
           <div class="work-cover-overlay">
             <span id="viewProjectsTxt">View Projects →</span>
           </div>
@@ -1645,6 +1652,8 @@
 
       var fs = document.getElementById('fohdoSub');
       if (fs && t.slides_label) fs.textContent = '6 ' + t.slides_label;
+      var ns = document.getElementById('nuveliaSub');
+      if (ns && t.slides_label) ns.textContent = '7 ' + t.slides_label;
 
       var vp = document.getElementById('viewProjectsTxt');
       if (vp && t.view_projects) vp.textContent = t.view_projects;
@@ -1720,9 +1729,9 @@
           <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">FOHDO</p><p id="fohdoSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 slides</p></div>
         </div>
 
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
-          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 02</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
+        <div onclick="showSlides('NUVELIA',['NUVELIA-01.png','NUVELIA-02.png','NUVELIA-03.png','NUVELIA-04.png','NUVELIA-05.png','NUVELIA-06.png','NUVELIA-07.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+          <div style="height:180px;overflow:hidden;"><img src="NUVELIA-01.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;"></div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">NUVELIA</p><p id="nuveliaSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">7 slides</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
@@ -1810,7 +1819,21 @@
       }
     }
 
-    document.addEventListener('keydown', function(e) {
+    // ── ROTATING BRAND COVER ──
+    var brandCovers = ['FOHDO_Plan de travail 1.png', 'NUVELIA-01.png'];
+    var brandCoverIdx = 0;
+    setInterval(function() {
+      var img = document.getElementById('brandCover');
+      if (!img) return;
+      img.style.opacity = '0';
+      setTimeout(function() {
+        brandCoverIdx = (brandCoverIdx + 1) % brandCovers.length;
+        img.src = brandCovers[brandCoverIdx];
+        img.style.opacity = '1';
+      }, 600);
+    }, 3000);
+
+        document.addEventListener('keydown', function(e) {
       if (document.getElementById('slideshowModal').style.display === 'flex') {
         if (e.key === 'ArrowRight') ssChange(1);
         if (e.key === 'ArrowLeft') ssChange(-1);
