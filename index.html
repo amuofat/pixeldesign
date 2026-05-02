@@ -1673,181 +1673,47 @@
     setTheme(savedTheme);
   
 
-    // ── BRAND GALLERY ──
-    function openBrandGallery() {
-      document.getElementById('brandModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeBrandGallery() {
-      document.getElementById('brandModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('brandModal').addEventListener('click', function(e) {
-      if (e.target === this) closeBrandGallery();
-    });
-
-    // ── SLIDESHOW ──
-    const projects = {
-      fohdo: {
-        title: 'FOHDO',
-        slides: [
-          'FOHDO_Plan de travail 1.png',
-          'FOHDO-02.png',
-          'FOHDO-03.png',
-          'FOHDO-04.png',
-          'FOHDO-05.png',
-          'FOHDO-06.png'
-        ]
-      }
-    };
-
-    let currentSlide = 0;
-    let currentProject = null;
-
-    function openSlideshow(projectKey) {
-      event.stopPropagation();
-      const project = projects[projectKey];
-      if (!project || !project.slides || project.slides.length === 0) return;
-
-      currentProject = project;
-      currentSlide = 0;
-
-      document.getElementById('slideshowTitle').textContent = project.title;
-      updateSlideshowImage();
-
-      // Build dots
-      const dotsEl = document.getElementById('slideshowDots');
-      dotsEl.innerHTML = '';
-      project.slides.forEach(function(_, i) {
-        const dot = document.createElement('button');
-        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', function(e) { e.stopPropagation(); goToSlide(i); });
-        dotsEl.appendChild(dot);
-      });
-
-      updateCounter();
-      const sm = document.getElementById('slideshowModal');
-      sm.style.display = 'flex';
-      sm.classList.add('open');
-    }
-
-    function updateSlideshowImage() {
-      const img = document.getElementById('slideshowCurrentImg');
-      img.src = currentProject.slides[currentSlide];
-      img.alt = currentProject.title + ' — Slide ' + (currentSlide + 1);
-    }
-
-    function closeSlideshow() {
-      event.stopPropagation();
-      const sm = document.getElementById('slideshowModal');
-      sm.classList.remove('open');
-      sm.style.display = 'none';
-    }
-
-    function changeSlide(dir) {
-      if (!currentProject) return;
-      const total = currentProject.slides.length;
-      goToSlide((currentSlide + dir + total) % total);
-    }
-
-    function goToSlide(index) {
-      const dots = document.querySelectorAll('.slide-dot');
-      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
-      currentSlide = index;
-      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-      updateSlideshowImage();
-      updateCounter();
-    }
-
-    function updateCounter() {
-      document.getElementById('slideshowCounter').textContent =
-        (currentSlide + 1) + ' / ' + currentProject.slides.length;
-    }
-
-    // Keyboard nav
-    document.addEventListener('keydown', function(e) {
-      if (document.getElementById('slideshowModal').classList.contains('open')) {
-        if (e.key === 'ArrowRight') changeSlide(1);
-        if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'Escape') closeSlideshow();
-      } else if (document.getElementById('brandModal').classList.contains('open')) {
-        if (e.key === 'Escape') closeBrandGallery();
-      }
-    });
 
   </script>
 
+
   <!-- BRAND GALLERY MODAL -->
-  <div class="modal-backdrop" id="brandModal">
-    <div class="modal-header">
-      <span class="modal-title">Brand Identity — Projects</span>
-      <button class="modal-close" onclick="closeBrandGallery()">✕</button>
+  <div id="brandModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;flex-direction:column;backdrop-filter:blur(16px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5vw;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;">
+      <span style="font-size:1rem;font-weight:600;color:#f5f5f7;">Brand Identity — Projects</span>
+      <button onclick="document.getElementById('brandModal').style.display='none';document.body.style.overflow='';" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="brand-grid">
+    <div style="flex:1;overflow-y:auto;padding:2.5rem 5vw;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;">
 
-        <!-- FOHDO — real project with slides -->
-        <div class="brand-card" onclick="openSlideshow('fohdo')">
-          <div class="brand-thumb">
-            <img src="FOHDO_Plan de travail 1.png" alt="FOHDO">
-          </div>
-          <div class="brand-info">
-            <h4>FOHDO</h4>
-            <p>Brand Identity · 6 slides</p>
-          </div>
+        <div onclick="showSlides('FOHDO',['FOHDO_Plan de travail 1.png','FOHDO-02.png','FOHDO-03.png','FOHDO-04.png','FOHDO-05.png','FOHDO-06.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+          <div style="height:180px;overflow:hidden;"><img src="FOHDO_Plan de travail 1.png" style="width:100%;height:100%;object-fit:cover;"></div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">FOHDO</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 slides</p></div>
         </div>
 
-        <!-- Placeholder projects -->
-        <div class="brand-card" onclick="openSlideshow('project02')">
-          <div class="brand-thumb">
-            <div class="brand-thumb-placeholder">Coming Soon</div>
-          </div>
-          <div class="brand-info">
-            <h4>Project 02</h4>
-            <p>Brand Identity</p>
-          </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 02</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
-        <div class="brand-card" onclick="openSlideshow('project03')">
-          <div class="brand-thumb">
-            <div class="brand-thumb-placeholder">Coming Soon</div>
-          </div>
-          <div class="brand-info">
-            <h4>Project 03</h4>
-            <p>Brand Identity</p>
-          </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 03</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
-        <div class="brand-card" onclick="openSlideshow('project04')">
-          <div class="brand-thumb">
-            <div class="brand-thumb-placeholder">Coming Soon</div>
-          </div>
-          <div class="brand-info">
-            <h4>Project 04</h4>
-            <p>Brand Identity</p>
-          </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 04</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
-        <div class="brand-card" onclick="openSlideshow('project05')">
-          <div class="brand-thumb">
-            <div class="brand-thumb-placeholder">Coming Soon</div>
-          </div>
-          <div class="brand-info">
-            <h4>Project 05</h4>
-            <p>Brand Identity</p>
-          </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 05</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
-        <div class="brand-card" onclick="openSlideshow('project06')">
-          <div class="brand-thumb">
-            <div class="brand-thumb-placeholder">Coming Soon</div>
-          </div>
-          <div class="brand-info">
-            <h4>Project 06</h4>
-            <p>Brand Identity</p>
-          </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 06</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
       </div>
@@ -1855,19 +1721,76 @@
   </div>
 
   <!-- SLIDESHOW MODAL -->
-  <div class="slideshow-backdrop" id="slideshowModal">
-    <div class="slideshow-header">
-      <span class="slideshow-title" id="slideshowTitle">FOHDO</span>
-      <span class="slideshow-counter" id="slideshowCounter">1 / 6</span>
-      <button class="slideshow-close" onclick="closeSlideshow()">✕</button>
+  <div id="slideshowModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:3000;flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5vw;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;">
+      <span id="ssTitle" style="font-size:0.95rem;font-weight:600;color:white;"></span>
+      <span id="ssCounter" style="font-size:0.8rem;color:rgba(255,255,255,0.4);"></span>
+      <button onclick="document.getElementById('slideshowModal').style.display='none';" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
     </div>
-    <div class="slideshow-body">
-      <button class="slide-btn prev" onclick="event.stopPropagation(); changeSlide(-1)">‹</button>
-      <img class="slideshow-img active" id="slideshowCurrentImg" src="" alt="Slide">
-      <button class="slide-btn next" onclick="event.stopPropagation(); changeSlide(1)">›</button>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;padding:2rem;">
+      <button onclick="ssChange(-1)" style="position:absolute;left:1.5rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:10;">‹</button>
+      <img id="ssImg" src="" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;">
+      <button onclick="ssChange(1)" style="position:absolute;right:1.5rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:10;">›</button>
     </div>
-    <div class="slideshow-dots" id="slideshowDots"></div>
+    <div id="ssDots" style="display:flex;justify-content:center;gap:8px;padding:1.2rem;"></div>
   </div>
+
+  <script>
+    // ── SIMPLE GALLERY + SLIDESHOW ──
+    var ssSlides = [];
+    var ssIndex = 0;
+
+    function openBrandGallery() {
+      document.getElementById('brandModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showSlides(title, slides) {
+      ssSlides = slides;
+      ssIndex = 0;
+      document.getElementById('ssTitle').textContent = title;
+      document.getElementById('ssImg').src = slides[0];
+      buildDots();
+      updateSS();
+      document.getElementById('slideshowModal').style.display = 'flex';
+    }
+
+    function ssChange(dir) {
+      ssIndex = (ssIndex + dir + ssSlides.length) % ssSlides.length;
+      document.getElementById('ssImg').src = ssSlides[ssIndex];
+      updateSS();
+    }
+
+    function buildDots() {
+      var d = document.getElementById('ssDots');
+      d.innerHTML = '';
+      ssSlides.forEach(function(_, i) {
+        var dot = document.createElement('div');
+        dot.style.cssText = 'width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:0.2s;';
+        dot.onclick = function() { ssIndex = i; document.getElementById('ssImg').src = ssSlides[i]; updateSS(); };
+        d.appendChild(dot);
+      });
+    }
+
+    function updateSS() {
+      document.getElementById('ssCounter').textContent = (ssIndex+1) + ' / ' + ssSlides.length;
+      var dots = document.getElementById('ssDots').children;
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].style.background = i === ssIndex ? 'white' : 'rgba(255,255,255,0.3)';
+        dots[i].style.transform = i === ssIndex ? 'scale(1.4)' : 'scale(1)';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById('slideshowModal').style.display === 'flex') {
+        if (e.key === 'ArrowRight') ssChange(1);
+        if (e.key === 'ArrowLeft') ssChange(-1);
+        if (e.key === 'Escape') document.getElementById('slideshowModal').style.display = 'none';
+      } else if (document.getElementById('brandModal').style.display === 'flex') {
+        if (e.key === 'Escape') { document.getElementById('brandModal').style.display='none'; document.body.style.overflow=''; }
+      }
+    });
+  </script>
 
 </body>
 </html>
