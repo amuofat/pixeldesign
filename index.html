@@ -1385,13 +1385,13 @@
         <div class="work-cover work-cover-1" style="position:relative;overflow:hidden;">
           <img src="FOHDO_Plan de travail 1.png" alt="Brand Identity" style="width:100%;height:100%;object-fit:cover;display:block;">
           <div class="work-cover-overlay">
-            <span>View Projects →</span>
+            <span id="viewProjectsTxt">View Projects →</span>
           </div>
         </div>
         <div class="work-info">
-          <span class="work-tag">Brand Identity</span>
-          <h3>Brand Identity</h3>
-          <p>A collection of brand identity projects — logos, visual systems, and complete brand guidelines.</p>
+          <span class="work-tag" data-i18n="tag_brand">Brand Identity</span>
+          <h3 data-i18n="w1_title">Brand Identity</h3>
+          <p data-i18n="w1_desc">A collection of brand identity projects — logos, visual systems, and complete brand guidelines.</p>
         </div>
       </article>
       <article class="work-card work-card-large">
@@ -1511,7 +1511,7 @@
 <script>
     const translations = {
       en: {
-        nav_services:"Services", nav_work:"Portfolio", nav_about:"About", nav_contact:"Contact", nav_cta:"Start a Project",
+        nav_services:"Services", nav_work:"Portfolio", modal_title:"Brand Identity — Projects", slides_label:"slides", coming_soon:"Coming Soon", view_projects:"View Projects →", nav_about:"About", nav_contact:"Contact", nav_cta:"Start a Project",
         hero_badge:"Based in Algeria · Available Worldwide",
         hero_title_1:"Future-Grade", hero_title_2:"Creative", hero_title_3:"Direction",
         hero_sub:"Pixel Designs builds sharp visual identities, precision-cut video, and next-gen websites for brands that refuse to look ordinary.",
@@ -1526,7 +1526,7 @@
         sv3_title:"Web Design & Dev", sv3_desc:"Minimal, modern, responsive websites that communicate value clearly and convert visitors with confidence.",
         sec_work_label:"Portfolio", sec_work_title:"Selected work.", sec_work_sub:"Branding, video, and web — focused and sharp.",
         tag_brand:"Brand Identity", tag_video:"Video Editing", tag_web:"Web Design",
-        w1_title:"TechStart DZ Rebrand", w1_desc:"A complete identity redesign including logo structure, visual language, and brand guidelines.",
+        w1_title:"Brand Identity", w1_desc:"A collection of brand identity projects — logos, visual systems, and complete brand guidelines.",
         w2_title:"Luxury Product Launch Film", w2_desc:"A sleek launch edit with cinematic pacing, transitions, and premium-grade visual refinement.",
         w3_title:"Boutique Business Website", w3_desc:"A responsive website built with a minimal interface and a stronger service presentation.",
         about_pill:"ALG · DZ", sec_about_label:"About", sec_about_title:"Built for the next era of brand presence.",
@@ -1540,7 +1540,7 @@
         footer:"© 2026 Pixel Designs. All rights reserved. · Algiers, Algeria"
       },
       fr: {
-        nav_services:"Services", nav_work:"Portfolio", nav_about:"À propos", nav_contact:"Contact", nav_cta:"Démarrer un projet",
+        nav_services:"Services", nav_work:"Portfolio", modal_title:"Identité visuelle — Projets", slides_label:"diapositives", coming_soon:"Bientôt disponible", view_projects:"Voir les projets →", nav_about:"À propos", nav_contact:"Contact", nav_cta:"Démarrer un projet",
         hero_badge:"Basé en Algérie · Disponible dans le monde",
         hero_title_1:"Création", hero_title_2:"Visuelle", hero_title_3:"Nouvelle Ère",
         hero_sub:"Pixel Designs crée des identités visuelles percutantes, des vidéos de précision et des sites nouvelle génération pour les marques qui refusent la banalité.",
@@ -1555,7 +1555,7 @@
         sv3_title:"Design & Dev web", sv3_desc:"Sites minimalistes, modernes et responsives qui transmettent la valeur clairement.",
         sec_work_label:"Portfolio", sec_work_title:"Travaux sélectionnés.", sec_work_sub:"Identité, vidéo et web — ciblés et percutants.",
         tag_brand:"Identité visuelle", tag_video:"Montage vidéo", tag_web:"Design web",
-        w1_title:"Refonte TechStart DZ", w1_desc:"Refonte complète incluant structure du logo, langage visuel et charte graphique.",
+        w1_title:"Identité de marque", w1_desc:"Une collection de projets d'identité visuelle — logos, systèmes visuels et chartes graphiques complètes.",
         w2_title:"Film de lancement luxe", w2_desc:"Montage élégant avec rythme cinématographique et finitions visuelles premium.",
         w3_title:"Site web boutique", w3_desc:"Site responsive avec interface minimaliste et présentation de services renforcée.",
         about_pill:"ALG · DZ", sec_about_label:"À propos", sec_about_title:"Conçu pour la prochaine ère de la présence de marque.",
@@ -1569,7 +1569,7 @@
         footer:"© 2026 Pixel Designs. Tous droits réservés. · Alger, Algérie"
       },
       ar: {
-        nav_services:"الخدمات", nav_work:"الأعمال", nav_about:"عن الاستوديو", nav_contact:"تواصل", nav_cta:"ابدأ مشروعك",
+        nav_services:"الخدمات", nav_work:"الأعمال", modal_title:"هوية بصرية — المشاريع", slides_label:"شرائح", coming_soon:"قريباً", view_projects:"عرض المشاريع ←", nav_about:"عن الاستوديو", nav_contact:"تواصل", nav_cta:"ابدأ مشروعك",
         hero_badge:"في الجزائر · متاح عالمياً",
         hero_title_1:"إبداع", hero_title_2:"بصري", hero_title_3:"من المستقبل",
         hero_sub:"Pixel Designs يبني هويات بصرية حادة، فيديو دقيق الصنع، ومواقع من الجيل القادم لعلامات ترفض الاعتيادية.",
@@ -1584,7 +1584,7 @@
         sv3_title:"تصميم وتطوير مواقع", sv3_desc:"مواقع حديثة، بسيطة ومتجاوبة تعرض القيمة بوضوح وتحول الزوار إلى عملاء.",
         sec_work_label:"الأعمال", sec_work_title:"أعمال مختارة.", sec_work_sub:"هوية، فيديو وويب — مركّزة وحادة.",
         tag_brand:"هوية بصرية", tag_video:"مونتاج فيديو", tag_web:"تصميم ويب",
-        w1_title:"إعادة تصميم TechStart DZ", w1_desc:"إعادة تصميم كاملة للهوية تشمل بنية الشعار، اللغة البصرية ودليل الهوية.",
+        w1_title:"هوية بصرية", w1_desc:"مجموعة مشاريع هوية بصرية — شعارات، أنظمة بصرية وأدلة هوية متكاملة.",
         w2_title:"فيلم إطلاق فاخر", w2_desc:"مونتاج أنيق بإيقاع سينمائي ولمسة بصرية عالية الجودة.",
         w3_title:"موقع ويب لنشاط بوتيك", w3_desc:"موقع متجاوب بواجهة بسيطة وتقديم أقوى للخدمات.",
         about_pill:"ALG · DZ", sec_about_label:"عن الاستوديو", sec_about_title:"مصمم لعصر جديد من الحضور البصري.",
@@ -1623,6 +1623,20 @@
         btn.classList.toggle('active', btn.dataset.lang === currentLang);
       });
       localStorage.setItem('pixel_lang', currentLang);
+
+      // Update modal texts
+      var mt = document.getElementById('modalTitle');
+      if (mt && t.modal_title) mt.textContent = t.modal_title;
+
+      var fs = document.getElementById('fohdoSub');
+      if (fs && t.slides_label) fs.textContent = '6 ' + t.slides_label;
+
+      var vp = document.getElementById('viewProjectsTxt');
+      if (vp && t.view_projects) vp.textContent = t.view_projects;
+
+      document.querySelectorAll('.coming-soon-txt').forEach(function(el) {
+        if (t.coming_soon) el.textContent = t.coming_soon;
+      });
     }
 
     langButtons.forEach(function(btn) {
@@ -1680,7 +1694,7 @@
   <!-- BRAND GALLERY MODAL -->
   <div id="brandModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;flex-direction:column;backdrop-filter:blur(16px);">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5vw;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;">
-      <span style="font-size:1rem;font-weight:600;color:#f5f5f7;">Brand Identity — Projects</span>
+      <span id="modalTitle" style="font-size:1rem;font-weight:600;color:#f5f5f7;">Brand Identity — Projects</span>
       <button onclick="document.getElementById('brandModal').style.display='none';document.body.style.overflow='';" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
     </div>
     <div style="flex:1;overflow-y:auto;padding:2.5rem 5vw;">
@@ -1688,31 +1702,31 @@
 
         <div onclick="showSlides('FOHDO',['FOHDO_Plan de travail 1.png','FOHDO-02.png','FOHDO-03.png','FOHDO-04.png','FOHDO-05.png','FOHDO-06.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
           <div style="height:180px;overflow:hidden;"><img src="FOHDO_Plan de travail 1.png" style="width:100%;height:100%;object-fit:cover;"></div>
-          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">FOHDO</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 slides</p></div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">FOHDO</p><p id="fohdoSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 slides</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
           <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 02</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
           <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 03</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
           <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 04</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
           <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 05</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
-          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;">COMING SOON</div>
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
           <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 06</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Brand Identity</p></div>
         </div>
 
@@ -1729,7 +1743,7 @@
     </div>
     <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;padding:2rem;">
       <button onclick="ssChange(-1)" style="position:absolute;left:1.5rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:10;">‹</button>
-      <img id="ssImg" src="" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;">
+      <img id="ssImg" src="" style="max-width:50%;max-height:70%;object-fit:contain;border-radius:8px;">
       <button onclick="ssChange(1)" style="position:absolute;right:1.5rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:10;">›</button>
     </div>
     <div id="ssDots" style="display:flex;justify-content:center;gap:8px;padding:1.2rem;"></div>
