@@ -998,7 +998,261 @@
       .hero-stats { flex-direction: column; gap: 1.5rem; }
       .stat-divider { display: none; }
     }
-</style>
+
+    /* ── BRAND GALLERY MODAL ── */
+    .work-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .work-card:hover .work-cover-overlay { opacity: 1; }
+
+    .work-cover-overlay span {
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 10px 20px;
+      border-radius: 980px;
+    }
+
+    /* Modal backdrop */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 2000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .modal-backdrop.open { display: flex; flex-direction: column; }
+
+    /* Modal header */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5vw;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .modal-close {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.2s;
+      line-height: 1;
+    }
+
+    .modal-close:hover { background: rgba(255,255,255,0.15); }
+
+    /* Brand grid inside modal */
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2.5rem 5vw;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .brand-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .brand-card:hover {
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .brand-thumb {
+      height: 180px;
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
+
+    .brand-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .brand-card:hover .brand-thumb img { transform: scale(1.04); }
+
+    .brand-thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.15);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-info { padding: 1rem 1.2rem; }
+
+    .brand-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-info p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Slideshow modal */
+    .slideshow-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      z-index: 3000;
+      flex-direction: column;
+    }
+
+    .slideshow-backdrop.open { display: flex; }
+
+    .slideshow-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5vw;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    .slideshow-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .slideshow-counter {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .slideshow-close {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.2s;
+    }
+
+    .slideshow-close:hover { background: rgba(255,255,255,0.15); }
+
+    .slideshow-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .slideshow-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .slideshow-img.active { display: block; }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.2s;
+      z-index: 10;
+    }
+
+    .slide-btn:hover { background: rgba(255,255,255,0.2); }
+    .slide-btn.prev { left: 1.5rem; }
+    .slide-btn.next { right: 1.5rem; }
+
+    .slideshow-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .slide-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+    }
+
+    .slide-dot.active { background: white; transform: scale(1.3); }
+
+    @media (max-width: 768px) {
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .brand-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
 </head>
 <body>
 
@@ -1127,14 +1381,17 @@
       <h2 class="section-title" data-i18n="sec_work_title">Selected work.</h2>
     </div>
     <div class="work-grid">
-      <article class="work-card work-card-large">
-        <div class="work-cover work-cover-1">
-          <div class="work-cover-inner"></div>
+      <article class="work-card work-card-large" id="brandCard" onclick="openBrandGallery()" style="cursor:pointer;">
+        <div class="work-cover work-cover-1" style="position:relative;overflow:hidden;">
+          <img src="FOHDO_Plan de travail 1.png" alt="Brand Identity" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="work-cover-overlay">
+            <span>View Projects →</span>
+          </div>
         </div>
         <div class="work-info">
-          <span class="work-tag" data-i18n="tag_brand">Brand Identity</span>
-          <h3 data-i18n="w1_title">TechStart DZ Rebrand</h3>
-          <p data-i18n="w1_desc">A complete identity redesign including logo structure, visual language, and brand guidelines.</p>
+          <span class="work-tag">Brand Identity</span>
+          <h3>Brand Identity</h3>
+          <p>A collection of brand identity projects — logos, visual systems, and complete brand guidelines.</p>
         </div>
       </article>
       <article class="work-card work-card-large">
@@ -1414,6 +1671,213 @@
 
     const savedTheme = localStorage.getItem('pixel_theme') || 'dark';
     setTheme(savedTheme);
+  
+
+    // ── BRAND GALLERY ──
+    function openBrandGallery() {
+      document.getElementById('brandModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBrandGallery() {
+      document.getElementById('brandModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('brandModal').addEventListener('click', function(e) {
+      if (e.target === this) closeBrandGallery();
+    });
+
+    // ── SLIDESHOW ──
+    const projects = {
+      fohdo: {
+        title: 'FOHDO',
+        slides: [
+          'FOHDO_Plan de travail 1.png',
+          'FOHDO-02.png',
+          'FOHDO-03.png',
+          'FOHDO-04.png',
+          'FOHDO-05.png',
+          'FOHDO-06.png'
+        ]
+      }
+    };
+
+    let currentSlide = 0;
+    let currentProject = null;
+
+    function openSlideshow(projectKey) {
+      const project = projects[projectKey];
+      if (!project) return; // placeholder — no slides yet
+
+      currentProject = project;
+      currentSlide = 0;
+
+      // Set title
+      document.getElementById('slideshowTitle').textContent = project.title;
+
+      // Build slides
+      const body = document.querySelector('.slideshow-body');
+      // Remove old dynamic slides
+      body.querySelectorAll('.slideshow-img').forEach(el => el.remove());
+
+      project.slides.forEach(function(src, i) {
+        const img = document.createElement('img');
+        img.className = 'slideshow-img' + (i === 0 ? ' active' : '');
+        img.src = src;
+        img.alt = 'Slide ' + (i + 1);
+        body.insertBefore(img, body.querySelector('.slide-btn.next'));
+      });
+
+      // Build dots
+      const dotsEl = document.getElementById('slideshowDots');
+      dotsEl.innerHTML = '';
+      project.slides.forEach(function(_, i) {
+        const dot = document.createElement('button');
+        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = function() { goToSlide(i); };
+        dotsEl.appendChild(dot);
+      });
+
+      updateCounter();
+      document.getElementById('slideshowModal').classList.add('open');
+    }
+
+    function closeSlideshow() {
+      document.getElementById('slideshowModal').classList.remove('open');
+    }
+
+    function changeSlide(dir) {
+      if (!currentProject) return;
+      const total = currentProject.slides.length;
+      goToSlide((currentSlide + dir + total) % total);
+    }
+
+    function goToSlide(index) {
+      const imgs = document.querySelectorAll('.slideshow-body .slideshow-img');
+      const dots = document.querySelectorAll('.slide-dot');
+      imgs[currentSlide].classList.remove('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      imgs[currentSlide].classList.add('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      if (!currentProject) return;
+      document.getElementById('slideshowCounter').textContent =
+        (currentSlide + 1) + ' / ' + currentProject.slides.length;
+    }
+
+    // Keyboard nav
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById('slideshowModal').classList.contains('open')) {
+        if (e.key === 'ArrowRight') changeSlide(1);
+        if (e.key === 'ArrowLeft') changeSlide(-1);
+        if (e.key === 'Escape') closeSlideshow();
+      } else if (document.getElementById('brandModal').classList.contains('open')) {
+        if (e.key === 'Escape') closeBrandGallery();
+      }
+    });
+
   </script>
+
+  <!-- BRAND GALLERY MODAL -->
+  <div class="modal-backdrop" id="brandModal">
+    <div class="modal-header">
+      <span class="modal-title">Brand Identity — Projects</span>
+      <button class="modal-close" onclick="closeBrandGallery()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="brand-grid">
+
+        <!-- FOHDO — real project with slides -->
+        <div class="brand-card" onclick="openSlideshow('fohdo')">
+          <div class="brand-thumb">
+            <img src="FOHDO_Plan de travail 1.png" alt="FOHDO">
+          </div>
+          <div class="brand-info">
+            <h4>FOHDO</h4>
+            <p>Brand Identity · 6 slides</p>
+          </div>
+        </div>
+
+        <!-- Placeholder projects -->
+        <div class="brand-card" onclick="openSlideshow('project02')">
+          <div class="brand-thumb">
+            <div class="brand-thumb-placeholder">Coming Soon</div>
+          </div>
+          <div class="brand-info">
+            <h4>Project 02</h4>
+            <p>Brand Identity</p>
+          </div>
+        </div>
+
+        <div class="brand-card" onclick="openSlideshow('project03')">
+          <div class="brand-thumb">
+            <div class="brand-thumb-placeholder">Coming Soon</div>
+          </div>
+          <div class="brand-info">
+            <h4>Project 03</h4>
+            <p>Brand Identity</p>
+          </div>
+        </div>
+
+        <div class="brand-card" onclick="openSlideshow('project04')">
+          <div class="brand-thumb">
+            <div class="brand-thumb-placeholder">Coming Soon</div>
+          </div>
+          <div class="brand-info">
+            <h4>Project 04</h4>
+            <p>Brand Identity</p>
+          </div>
+        </div>
+
+        <div class="brand-card" onclick="openSlideshow('project05')">
+          <div class="brand-thumb">
+            <div class="brand-thumb-placeholder">Coming Soon</div>
+          </div>
+          <div class="brand-info">
+            <h4>Project 05</h4>
+            <p>Brand Identity</p>
+          </div>
+        </div>
+
+        <div class="brand-card" onclick="openSlideshow('project06')">
+          <div class="brand-thumb">
+            <div class="brand-thumb-placeholder">Coming Soon</div>
+          </div>
+          <div class="brand-info">
+            <h4>Project 06</h4>
+            <p>Brand Identity</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDESHOW MODAL -->
+  <div class="slideshow-backdrop" id="slideshowModal">
+    <div class="slideshow-header">
+      <span class="slideshow-title" id="slideshowTitle">FOHDO</span>
+      <span class="slideshow-counter" id="slideshowCounter">1 / 6</span>
+      <button class="slideshow-close" onclick="closeSlideshow()">✕</button>
+    </div>
+    <div class="slideshow-body">
+      <button class="slide-btn prev" onclick="changeSlide(-1)">‹</button>
+      <img class="slideshow-img active" id="slide-0" src="FOHDO_Plan de travail 1.png" alt="Slide 1">
+      <img class="slideshow-img" id="slide-1" src="FOHDO-02.png" alt="Slide 2">
+      <img class="slideshow-img" id="slide-2" src="FOHDO-03.png" alt="Slide 3">
+      <img class="slideshow-img" id="slide-3" src="FOHDO-04.png" alt="Slide 4">
+      <img class="slideshow-img" id="slide-4" src="FOHDO-05.png" alt="Slide 5">
+      <img class="slideshow-img" id="slide-5" src="FOHDO-06.png" alt="Slide 6">
+      <button class="slide-btn next" onclick="changeSlide(1)">›</button>
+    </div>
+    <div class="slideshow-dots" id="slideshowDots"></div>
+  </div>
+
 </body>
 </html>
