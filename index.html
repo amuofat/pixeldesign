@@ -1684,7 +1684,6 @@
       document.body.style.overflow = '';
     }
 
-    // Close modal on backdrop click
     document.getElementById('brandModal').addEventListener('click', function(e) {
       if (e.target === this) closeBrandGallery();
     });
@@ -1709,26 +1708,15 @@
 
     function openSlideshow(projectKey) {
       const project = projects[projectKey];
-      if (!project) return; // placeholder — no slides yet
+      if (!project || !project.slides || project.slides.length === 0) return;
 
       currentProject = project;
       currentSlide = 0;
 
-      // Set title
       document.getElementById('slideshowTitle').textContent = project.title;
 
-      // Build slides
-      const body = document.querySelector('.slideshow-body');
-      // Remove old dynamic slides
-      body.querySelectorAll('.slideshow-img').forEach(el => el.remove());
-
-      project.slides.forEach(function(src, i) {
-        const img = document.createElement('img');
-        img.className = 'slideshow-img' + (i === 0 ? ' active' : '');
-        img.src = src;
-        img.alt = 'Slide ' + (i + 1);
-        body.insertBefore(img, body.querySelector('.slide-btn.next'));
-      });
+      // Single image swap approach
+      updateSlideshowImage();
 
       // Build dots
       const dotsEl = document.getElementById('slideshowDots');
@@ -1736,12 +1724,18 @@
       project.slides.forEach(function(_, i) {
         const dot = document.createElement('button');
         dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-        dot.onclick = function() { goToSlide(i); };
+        dot.addEventListener('click', function() { goToSlide(i); });
         dotsEl.appendChild(dot);
       });
 
       updateCounter();
       document.getElementById('slideshowModal').classList.add('open');
+    }
+
+    function updateSlideshowImage() {
+      const img = document.getElementById('slideshowCurrentImg');
+      img.src = currentProject.slides[currentSlide];
+      img.alt = currentProject.title + ' — Slide ' + (currentSlide + 1);
     }
 
     function closeSlideshow() {
@@ -1755,18 +1749,15 @@
     }
 
     function goToSlide(index) {
-      const imgs = document.querySelectorAll('.slideshow-body .slideshow-img');
       const dots = document.querySelectorAll('.slide-dot');
-      imgs[currentSlide].classList.remove('active');
       if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
       currentSlide = index;
-      imgs[currentSlide].classList.add('active');
       if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+      updateSlideshowImage();
       updateCounter();
     }
 
     function updateCounter() {
-      if (!currentProject) return;
       document.getElementById('slideshowCounter').textContent =
         (currentSlide + 1) + ' / ' + currentProject.slides.length;
     }
@@ -1868,12 +1859,7 @@
     </div>
     <div class="slideshow-body">
       <button class="slide-btn prev" onclick="changeSlide(-1)">‹</button>
-      <img class="slideshow-img active" id="slide-0" src="FOHDO_Plan de travail 1.png" alt="Slide 1">
-      <img class="slideshow-img" id="slide-1" src="FOHDO-02.png" alt="Slide 2">
-      <img class="slideshow-img" id="slide-2" src="FOHDO-03.png" alt="Slide 3">
-      <img class="slideshow-img" id="slide-3" src="FOHDO-04.png" alt="Slide 4">
-      <img class="slideshow-img" id="slide-4" src="FOHDO-05.png" alt="Slide 5">
-      <img class="slideshow-img" id="slide-5" src="FOHDO-06.png" alt="Slide 6">
+      <img class="slideshow-img active" id="slideshowCurrentImg" src="" alt="Slide">
       <button class="slide-btn next" onclick="changeSlide(1)">›</button>
     </div>
     <div class="slideshow-dots" id="slideshowDots"></div>
