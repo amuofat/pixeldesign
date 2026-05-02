@@ -1430,14 +1430,17 @@
           <p data-i18n="w2_desc">A collection of video projects — brand films, ads, and premium post-production work.</p>
         </div>
       </article>
-      <article class="work-card work-card-wide">
-        <div class="work-cover work-cover-3">
-          <div class="work-cover-inner"></div>
+      <article class="work-card work-card-wide" onclick="openWebGallery()" style="cursor:pointer;">
+        <div class="work-cover work-cover-3" style="position:relative;overflow:hidden;">
+          <img src="pixelTV_website.png" alt="Web Design" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="work-cover-overlay">
+            <span id="viewWebTxt">View Projects →</span>
+          </div>
         </div>
         <div class="work-info">
           <span class="work-tag" data-i18n="tag_web">Web Design</span>
-          <h3 data-i18n="w3_title">Boutique Business Website</h3>
-          <p data-i18n="w3_desc">A responsive website built with a minimal interface and a stronger service presentation.</p>
+          <h3 data-i18n="w3_title">Web Design</h3>
+          <p data-i18n="w3_desc">A collection of web design projects — clean interfaces, responsive layouts and modern experiences.</p>
         </div>
       </article>
     </div>
@@ -1536,7 +1539,7 @@
 <script>
     const translations = {
       en: {
-        nav_services:"Services", nav_work:"Portfolio", modal_title:"Brand Identity — Projects", slides_label:"slides", coming_soon:"Coming Soon", view_projects:"View Projects →", view_videos:"View Videos →", nav_about:"About", nav_contact:"Contact", nav_cta:"Start a Project",
+        nav_services:"Services", nav_work:"Portfolio", modal_title:"Brand Identity — Projects", slides_label:"slides", coming_soon:"Coming Soon", view_projects:"View Projects →", view_videos:"View Videos →", view_web:"View Projects →", nav_about:"About", nav_contact:"Contact", nav_cta:"Start a Project",
         hero_badge:"Based in Algeria · Available Worldwide",
         hero_title_1:"Future-Grade", hero_title_2:"Creative", hero_title_3:"Direction",
         hero_sub:"Pixel Studio builds sharp visual identities, precision-cut video, and next-gen websites for brands that refuse to look ordinary.",
@@ -1553,7 +1556,7 @@
         tag_brand:"Brand Identity", tag_video:"Video Editing", tag_web:"Web Design",
         w1_title:"Brand Identity", w1_desc:"A collection of brand identity projects — logos, visual systems, and complete brand guidelines.",
         w2_title:"Video Editing", w2_desc:"A collection of video projects — brand films, ads, and premium post-production work.",
-        w3_title:"Boutique Business Website", w3_desc:"A responsive website built with a minimal interface and a stronger service presentation.",
+        w3_title:"Web Design", w3_desc:"A collection of web design projects — clean interfaces, responsive layouts and modern experiences.",
         about_pill:"ALG · DZ", sec_about_label:"About", sec_about_title:"Built for the next era of brand presence.",
         about_p1:"Pixel Studio is a creative studio focused on brand identity, video editing, and high-performance web experiences for businesses that care about how they show up.",
         about_p2:"The goal: visuals that cut through noise — sharp, clear, and built to last.",
@@ -1565,7 +1568,7 @@
         footer:"© 2026 Pixel Studio. All rights reserved. · Algiers, Algeria"
       },
       fr: {
-        nav_services:"Services", nav_work:"Portfolio", modal_title:"Identité visuelle — Projets", slides_label:"diapositives", coming_soon:"Bientôt disponible", view_projects:"Voir les projets →", view_videos:"Voir les vidéos →", nav_about:"À propos", nav_contact:"Contact", nav_cta:"Démarrer un projet",
+        nav_services:"Services", nav_work:"Portfolio", modal_title:"Identité visuelle — Projets", slides_label:"diapositives", coming_soon:"Bientôt disponible", view_projects:"Voir les projets →", view_videos:"Voir les vidéos →", view_web:"Voir les projets →", nav_about:"À propos", nav_contact:"Contact", nav_cta:"Démarrer un projet",
         hero_badge:"Basé en Algérie · Disponible dans le monde",
         hero_title_1:"Création", hero_title_2:"Visuelle", hero_title_3:"Nouvelle Ère",
         hero_sub:"Pixel Studio crée des identités visuelles percutantes, des vidéos de précision et des sites nouvelle génération pour les marques qui refusent la banalité.",
@@ -1594,7 +1597,7 @@
         footer:"© 2026 Pixel Studio. Tous droits réservés. · Alger, Algérie"
       },
       ar: {
-        nav_services:"الخدمات", nav_work:"الأعمال", modal_title:"هوية بصرية — المشاريع", slides_label:"شرائح", coming_soon:"قريباً", view_projects:"عرض المشاريع ←", view_videos:"عرض الفيديوهات ←", nav_about:"عن الاستوديو", nav_contact:"تواصل", nav_cta:"ابدأ مشروعك",
+        nav_services:"الخدمات", nav_work:"الأعمال", modal_title:"هوية بصرية — المشاريع", slides_label:"شرائح", coming_soon:"قريباً", view_projects:"عرض المشاريع ←", view_videos:"عرض الفيديوهات ←", view_web:"عرض المشاريع ←", nav_about:"عن الاستوديو", nav_contact:"تواصل", nav_cta:"ابدأ مشروعك",
         hero_badge:"في الجزائر · متاح عالمياً",
         hero_title_1:"إبداع", hero_title_2:"بصري", hero_title_3:"من المستقبل",
         hero_sub:"Pixel Studio يبني هويات بصرية حادة، فيديو دقيق الصنع، ومواقع من الجيل القادم لعلامات ترفض الاعتيادية.",
@@ -1611,7 +1614,7 @@
         tag_brand:"هوية بصرية", tag_video:"مونتاج فيديو", tag_web:"تصميم ويب",
         w1_title:"هوية بصرية", w1_desc:"مجموعة مشاريع هوية بصرية — شعارات، أنظمة بصرية وأدلة هوية متكاملة.",
         w2_title:"مونتاج فيديو", w2_desc:"مجموعة مشاريع فيديو — أفلام علامات تجارية، إعلانات وإنتاج نهائي احترافي.",
-        w3_title:"موقع ويب لنشاط بوتيك", w3_desc:"موقع متجاوب بواجهة بسيطة وتقديم أقوى للخدمات.",
+        w3_title:"تصميم ويب", w3_desc:"مجموعة مشاريع ويب — واجهات نظيفة، تخطيطات متجاوبة وتجارب حديثة.",
         about_pill:"ALG · DZ", sec_about_label:"عن الاستوديو", sec_about_title:"مصمم لعصر جديد من الحضور البصري.",
         about_p1:"Pixel Studio استوديو إبداعي يركز على الهوية البصرية، مونتاج الفيديو وتجارب الويب عالية الأداء.",
         about_p2:"الهدف: صناعة أعمال بصرية تقطع الضجيج — حادة، واضحة، تدوم.",
@@ -1664,6 +1667,8 @@
       if (vp && t.view_projects) vp.textContent = t.view_projects;
       var vv = document.getElementById('viewVideosTxt');
       if (vv && t.view_videos) vv.textContent = t.view_videos;
+      var vw = document.getElementById('viewWebTxt');
+      if (vw && t.view_web) vw.textContent = t.view_web;
 
       document.querySelectorAll('.coming-soon-txt').forEach(function(el) {
         if (t.coming_soon) el.textContent = t.coming_soon;
@@ -1869,12 +1874,35 @@
       if (e.key === 'ArrowLeft' && document.getElementById('slideshowModal').style.display === 'flex') ssChange(-1);
       if (e.key === 'Escape') {
         if (document.getElementById('slideshowModal').style.display === 'flex') document.getElementById('slideshowModal').style.display = 'none';
+        else if (document.getElementById('webScrollModal').style.display === 'flex') document.getElementById('webScrollModal').style.display = 'none';
         else if (document.getElementById('videoPlayerModal').style.display === 'flex') closeVideoPlayer();
         else if (document.getElementById('videoModal').style.display === 'flex') { document.getElementById('videoModal').style.display='none'; document.body.style.overflow=''; }
+        else if (document.getElementById('webModal').style.display === 'flex') { document.getElementById('webModal').style.display='none'; document.body.style.overflow=''; }
         else if (document.getElementById('brandModal').style.display === 'flex') { document.getElementById('brandModal').style.display='none'; document.body.style.overflow=''; }
       }
     });
-</script>
+
+    // ── WEB GALLERY ──
+    function openWebGallery() {
+      document.getElementById('webModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openWebScroll(title, images) {
+      document.getElementById('webScrollTitle').textContent = title;
+      var body = document.getElementById('webScrollBody');
+      body.innerHTML = '';
+      images.forEach(function(src) {
+        var img = document.createElement('img');
+        img.src = src;
+        img.style.cssText = 'width:100%;max-width:900px;display:block;border-radius:0;';
+        body.appendChild(img);
+      });
+      body.scrollTop = 0;
+      document.getElementById('webScrollModal').style.display = 'flex';
+    }
+
+  </script>
 
 
   <!-- VIDEO GALLERY MODAL -->
@@ -1936,6 +1964,62 @@
       <video id="videoPlayerEl" controls style="max-width:min(80%,900px);max-height:80vh;border-radius:10px;background:#000;outline:none;">
         Your browser does not support the video tag.
       </video>
+    </div>
+  </div>
+
+
+  <!-- WEB GALLERY MODAL -->
+  <div id="webModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;flex-direction:column;backdrop-filter:blur(16px);">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5vw;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;">
+      <span id="webModalTitle" style="font-size:1rem;font-weight:600;color:#f5f5f7;">Web Design — Projects</span>
+      <button onclick="document.getElementById('webModal').style.display='none';document.body.style.overflow='';" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:2.5rem 5vw;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;">
+
+        <!-- pixelTV Website -->
+        <div onclick="openWebScroll('pixelTV Website', ['pixelTV_website.png','pixelTV_website2.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+          <div style="height:180px;overflow:hidden;"><img src="pixelTV_website.png" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.3s;"></div>
+          <div style="padding:1rem 1.2rem;">
+            <p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">pixelTV Website</p>
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Web Design · 2 screens</p>
+          </div>
+        </div>
+
+        <!-- Placeholders -->
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 02</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Web Design</p></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 03</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Web Design</p></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 04</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Web Design</p></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 05</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Web Design</p></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="height:180px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.08em;" class="coming-soon-txt">COMING SOON</div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">Project 06</p><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);">Web Design</p></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WEB SCROLL VIEWER -->
+  <div id="webScrollModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:3000;flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5vw;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;">
+      <span id="webScrollTitle" style="font-size:0.95rem;font-weight:600;color:white;"></span>
+      <button onclick="document.getElementById('webScrollModal').style.display='none';" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
+    </div>
+    <div id="webScrollBody" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:2rem 5vw;gap:0;">
+      <!-- images injected by JS -->
     </div>
   </div>
 
