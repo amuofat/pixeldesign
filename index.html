@@ -1140,7 +1140,7 @@
 
     /* Slideshow modal */
     .slideshow-backdrop {
-      display: none;
+      display: none !important;
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.96);
@@ -1148,7 +1148,7 @@
       flex-direction: column;
     }
 
-    .slideshow-backdrop.open { display: flex; }
+    .slideshow-backdrop.open { display: flex !important; }
 
     .slideshow-header {
       display: flex;
@@ -1707,6 +1707,7 @@
     let currentProject = null;
 
     function openSlideshow(projectKey) {
+      event.stopPropagation();
       const project = projects[projectKey];
       if (!project || !project.slides || project.slides.length === 0) return;
 
@@ -1714,8 +1715,6 @@
       currentSlide = 0;
 
       document.getElementById('slideshowTitle').textContent = project.title;
-
-      // Single image swap approach
       updateSlideshowImage();
 
       // Build dots
@@ -1724,12 +1723,14 @@
       project.slides.forEach(function(_, i) {
         const dot = document.createElement('button');
         dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', function() { goToSlide(i); });
+        dot.addEventListener('click', function(e) { e.stopPropagation(); goToSlide(i); });
         dotsEl.appendChild(dot);
       });
 
       updateCounter();
-      document.getElementById('slideshowModal').classList.add('open');
+      const sm = document.getElementById('slideshowModal');
+      sm.style.display = 'flex';
+      sm.classList.add('open');
     }
 
     function updateSlideshowImage() {
@@ -1739,7 +1740,10 @@
     }
 
     function closeSlideshow() {
-      document.getElementById('slideshowModal').classList.remove('open');
+      event.stopPropagation();
+      const sm = document.getElementById('slideshowModal');
+      sm.classList.remove('open');
+      sm.style.display = 'none';
     }
 
     function changeSlide(dir) {
@@ -1858,9 +1862,9 @@
       <button class="slideshow-close" onclick="closeSlideshow()">✕</button>
     </div>
     <div class="slideshow-body">
-      <button class="slide-btn prev" onclick="changeSlide(-1)">‹</button>
+      <button class="slide-btn prev" onclick="event.stopPropagation(); changeSlide(-1)">‹</button>
       <img class="slideshow-img active" id="slideshowCurrentImg" src="" alt="Slide">
-      <button class="slide-btn next" onclick="changeSlide(1)">›</button>
+      <button class="slide-btn next" onclick="event.stopPropagation(); changeSlide(1)">›</button>
     </div>
     <div class="slideshow-dots" id="slideshowDots"></div>
   </div>
