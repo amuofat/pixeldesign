@@ -1252,6 +1252,13 @@
       .brand-grid { grid-template-columns: 1fr; }
     }
 
+      @media (max-width: 768px) {
+      #ssImg { max-width: 90vw !important; max-height: 65vh !important; }
+      .brand-grid-inner { grid-template-columns: repeat(2,1fr) !important; }
+    }
+    @media (max-width: 480px) {
+      #ssImg { max-width: 95vw !important; max-height: 60vh !important; }
+    }
   </style>
 </head>
 <body>
@@ -1486,7 +1493,7 @@
         <p data-i18n="ci_sub">Reach Pixel Designs by email or Instagram.</p>
         <div class="contact-item">
           <div class="contact-mark"></div>
-          <span data-i18n="ci_location">Algiers, Algeria</span>
+          <a href="tel:+213559394934">+213 559 394 934</a>
         </div>
         <div class="contact-item">
           <div class="contact-mark"></div>
@@ -1498,7 +1505,6 @@
         </div>
         <div class="social-links">
           <a href="https://www.instagram.com/pixell__designs?igsh=MTRsMTdmcmEzN254Zg==" target="_blank" class="social-link">Instagram</a>
-          <a href="mailto:pixeldesigns.fr@gmail.com" class="social-link">Email</a>
         </div>
       </div>
     </div>
@@ -1743,7 +1749,7 @@
     </div>
     <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;padding:2rem;">
       <button onclick="ssChange(-1)" style="position:absolute;left:1.5rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:10;">‹</button>
-      <img id="ssImg" src="" style="max-width:50%;max-height:70%;object-fit:contain;border-radius:8px;">
+      <img id="ssImg" src="" style="max-width:min(50%, 90vw);max-height:75vh;object-fit:contain;border-radius:8px;">
       <button onclick="ssChange(1)" style="position:absolute;right:1.5rem;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:10;">›</button>
     </div>
     <div id="ssDots" style="display:flex;justify-content:center;gap:8px;padding:1.2rem;"></div>
