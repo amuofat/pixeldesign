@@ -1539,7 +1539,7 @@
 <script>
     const translations = {
       en: {
-        nav_services:"Services", nav_work:"Portfolio", modal_title:"Brand Identity — Projects", slides_label:"slides", coming_soon:"Coming Soon", view_projects:"View Projects →", view_videos:"View Videos →", view_web:"View Projects →", nav_about:"About", nav_contact:"Contact", nav_cta:"Start a Project",
+        nav_services:"Services", nav_work:"Portfolio", modal_title:"Brand Identity — Projects", slides_label:"pages", coming_soon:"Coming Soon", view_projects:"View Projects →", view_videos:"View Videos →", view_web:"View Projects →", nav_about:"About", nav_contact:"Contact", nav_cta:"Start a Project",
         hero_badge:"Based in Algeria · Available Worldwide",
         hero_title_1:"Future-Grade", hero_title_2:"Creative", hero_title_3:"Direction",
         hero_sub:"Pixel Studio builds sharp visual identities, precision-cut video, and next-gen websites for brands that refuse to look ordinary.",
@@ -1568,7 +1568,7 @@
         footer:"© 2026 Pixel Studio. All rights reserved. · Algiers, Algeria"
       },
       fr: {
-        nav_services:"Services", nav_work:"Portfolio", modal_title:"Identité visuelle — Projets", slides_label:"diapositives", coming_soon:"Bientôt disponible", view_projects:"Voir les projets →", view_videos:"Voir les vidéos →", view_web:"Voir les projets →", nav_about:"À propos", nav_contact:"Contact", nav_cta:"Démarrer un projet",
+        nav_services:"Services", nav_work:"Portfolio", modal_title:"Identité visuelle — Projets", slides_label:"pages", coming_soon:"Bientôt disponible", view_projects:"Voir les projets →", view_videos:"Voir les vidéos →", view_web:"Voir les projets →", nav_about:"À propos", nav_contact:"Contact", nav_cta:"Démarrer un projet",
         hero_badge:"Basé en Algérie · Disponible dans le monde",
         hero_title_1:"Création", hero_title_2:"Visuelle", hero_title_3:"Nouvelle Ère",
         hero_sub:"Pixel Studio crée des identités visuelles percutantes, des vidéos de précision et des sites nouvelle génération pour les marques qui refusent la banalité.",
@@ -1597,7 +1597,7 @@
         footer:"© 2026 Pixel Studio. Tous droits réservés. · Alger, Algérie"
       },
       ar: {
-        nav_services:"الخدمات", nav_work:"الأعمال", modal_title:"هوية بصرية — المشاريع", slides_label:"شرائح", coming_soon:"قريباً", view_projects:"عرض المشاريع ←", view_videos:"عرض الفيديوهات ←", view_web:"عرض المشاريع ←", nav_about:"عن الاستوديو", nav_contact:"تواصل", nav_cta:"ابدأ مشروعك",
+        nav_services:"الخدمات", nav_work:"الأعمال", modal_title:"هوية بصرية — المشاريع", slides_label:"صفحات", coming_soon:"قريباً", view_projects:"عرض المشاريع ←", view_videos:"عرض الفيديوهات ←", view_web:"عرض المشاريع ←", nav_about:"عن الاستوديو", nav_contact:"تواصل", nav_cta:"ابدأ مشروعك",
         hero_badge:"في الجزائر · متاح عالمياً",
         hero_title_1:"إبداع", hero_title_2:"بصري", hero_title_3:"من المستقبل",
         hero_sub:"Pixel Studio يبني هويات بصرية حادة، فيديو دقيق الصنع، ومواقع من الجيل القادم لعلامات ترفض الاعتيادية.",
@@ -1736,19 +1736,19 @@
     <div style="flex:1;overflow-y:auto;padding:2.5rem 5vw;">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;">
 
-        <div onclick="showSlides('FOHDO',['FOHDO_Plan de travail 1.png','FOHDO-02.png','FOHDO-03.png','FOHDO-04.png','FOHDO-05.png','FOHDO-06.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+        <div onclick="openWebScroll('FOHDO',['FOHDO_Plan de travail 1.png','FOHDO-02.png','FOHDO-03.png','FOHDO-04.png','FOHDO-05.png','FOHDO-06.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
           <div style="height:180px;overflow:hidden;"><img src="FOHDO_Plan de travail 1.png" style="width:100%;height:100%;object-fit:cover;"></div>
-          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">FOHDO</p><p id="fohdoSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 slides</p></div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">FOHDO</p><p id="fohdoSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 pages</p></div>
         </div>
 
-        <div onclick="showSlides('NUVELIA',['NUVELIA-01.png','NUVELIA-02.png','NUVELIA-03.png','NUVELIA-04.png','NUVELIA-05.png','NUVELIA-06.png','NUVELIA-07.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+        <div onclick="openWebScroll('NUVELIA',['NUVELIA-01.png','NUVELIA-02.png','NUVELIA-03.png','NUVELIA-04.png','NUVELIA-05.png','NUVELIA-06.png','NUVELIA-07.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
           <div style="height:180px;overflow:hidden;"><img src="NUVELIA-01.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;"></div>
-          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">NUVELIA</p><p id="nuveliaSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">7 slides</p></div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">NUVELIA</p><p id="nuveliaSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">7 pages</p></div>
         </div>
 
-        <div onclick="showSlides('pixelTV',['pixelTV_01.png','pixelTV-02.png','pixelTV-03.png','pixelTV-04.png','pixelTV-05.png','pixelTV-06.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+        <div onclick="openWebScroll('pixelTV',['pixelTV_01.png','pixelTV-02.png','pixelTV-03.png','pixelTV-04.png','pixelTV-05.png','pixelTV-06.png'])" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
           <div style="height:180px;overflow:hidden;"><img src="pixelTV_01.png" style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;"></div>
-          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">pixelTV</p><p id="pixeltvSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 slides</p></div>
+          <div style="padding:1rem 1.2rem;"><p style="font-size:0.95rem;font-weight:600;color:#f5f5f7;">pixelTV</p><p id="pixeltvSub" style="font-size:0.78rem;color:rgba(255,255,255,0.4);">6 pages</p></div>
         </div>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
