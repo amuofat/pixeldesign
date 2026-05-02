@@ -1419,7 +1419,7 @@
       </article>
       <article class="work-card work-card-large" onclick="openVideoGallery()" style="cursor:pointer;">
         <div class="work-cover work-cover-2" style="position:relative;overflow:hidden;">
-          <img src="COVER VID1.png" alt="Video Editing" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img src="COVER VID1.jpeg" alt="Video Editing" style="width:100%;height:100%;object-fit:cover;display:block;">
           <div class="work-cover-overlay">
             <span id="viewVideosTxt">View Videos →</span>
           </div>
@@ -1838,16 +1838,41 @@
       }, 600);
     }, 3000);
 
-        document.addEventListener('keydown', function(e) {
-      if (document.getElementById('slideshowModal').style.display === 'flex') {
-        if (e.key === 'ArrowRight') ssChange(1);
-        if (e.key === 'ArrowLeft') ssChange(-1);
-        if (e.key === 'Escape') document.getElementById('slideshowModal').style.display = 'none';
-      } else if (document.getElementById('brandModal').style.display === 'flex') {
-        if (e.key === 'Escape') { document.getElementById('brandModal').style.display='none'; document.body.style.overflow=''; }
+    
+  
+    // ── VIDEO GALLERY ──
+    function openVideoGallery() {
+      document.getElementById('videoModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openVideoPlayer(title, src, poster) {
+      document.getElementById('videoPlayerTitle').textContent = title;
+      var vid = document.getElementById('videoPlayerEl');
+      vid.src = src;
+      if (poster) vid.poster = poster;
+      vid.load();
+      document.getElementById('videoPlayerModal').style.display = 'flex';
+    }
+
+    function closeVideoPlayer() {
+      var vid = document.getElementById('videoPlayerEl');
+      vid.pause();
+      vid.src = '';
+      document.getElementById('videoPlayerModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' && document.getElementById('slideshowModal').style.display === 'flex') ssChange(1);
+      if (e.key === 'ArrowLeft' && document.getElementById('slideshowModal').style.display === 'flex') ssChange(-1);
+      if (e.key === 'Escape') {
+        if (document.getElementById('slideshowModal').style.display === 'flex') document.getElementById('slideshowModal').style.display = 'none';
+        else if (document.getElementById('videoPlayerModal').style.display === 'flex') closeVideoPlayer();
+        else if (document.getElementById('videoModal').style.display === 'flex') { document.getElementById('videoModal').style.display='none'; document.body.style.overflow=''; }
+        else if (document.getElementById('brandModal').style.display === 'flex') { document.getElementById('brandModal').style.display='none'; document.body.style.overflow=''; }
       }
     });
-  </script>
+</script>
 
 
   <!-- VIDEO GALLERY MODAL -->
@@ -1860,9 +1885,9 @@
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;">
 
         <!-- Iris Immobilier — real video -->
-        <div onclick="openVideoPlayer('Iris Immobilier', 'ad_for_iris_immobilier.mp4', 'COVER VID1.png')" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
+        <div onclick="openVideoPlayer('Iris Immobilier', 'ad_for_iris_immobilier.mp4', 'COVER VID1.jpeg')" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;cursor:pointer;transition:0.2s;">
           <div style="height:180px;overflow:hidden;position:relative;">
-            <img src="COVER VID1.png" style="width:100%;height:100%;object-fit:cover;">
+            <img src="COVER VID1.jpeg" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
               <div style="width:48px;height:48px;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;padding-left:4px;">▶</div>
             </div>
