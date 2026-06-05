@@ -99,11 +99,6 @@
     body.light .brand-info p { color: var(--muted); }
     body.light .brand-thumb-placeholder { color: var(--muted-2); }
     body.light .coming-soon-txt { color: var(--muted-2); }
-    body.light .slideshow-backdrop { background: rgba(255,255,255,0.98); }
-    body.light .slideshow-header { border-bottom-color: rgba(0,0,0,0.06); }
-    body.light .slideshow-title { color: var(--white); }
-    body.light .slideshow-counter { color: var(--muted); }
-    body.light .slideshow-close { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); color: var(--white); }
     body.light .slide-btn { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); color: var(--white); }
     body.light .slide-btn:hover { background: rgba(0,0,0,0.1); }
     body.light .slide-dot { background: rgba(0,0,0,0.15); }
@@ -1115,116 +1110,6 @@
       color: var(--muted);
     }
 
-    /* Slideshow */
-    .slideshow-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.97);
-      z-index: 3000;
-      flex-direction: column;
-    }
-
-    .slideshow-backdrop.open { display: flex; animation: fadeIn 0.3s ease; }
-
-    .slideshow-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 5vw;
-      border-bottom: 1px solid var(--line);
-      flex-shrink: 0;
-    }
-
-    .slideshow-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: white;
-      letter-spacing: -0.01em;
-    }
-
-    .slideshow-counter {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      font-weight: 500;
-    }
-
-    .slideshow-close {
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: white;
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s;
-    }
-
-    .slideshow-close:hover { background: var(--card-hover); transform: rotate(90deg); }
-
-    .slideshow-body {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 2rem;
-    }
-
-    .slideshow-img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 10px;
-      display: none;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-
-    .slideshow-img.active { display: block; animation: fadeIn 0.4s ease; }
-
-    .slide-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: white;
-      width: 50px; height: 50px;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.25s var(--transition);
-      z-index: 10;
-    }
-
-    .slide-btn:hover { background: var(--card-hover); border-color: var(--line-hover); transform: translateY(-50%) scale(1.05); }
-    .slide-btn.prev { left: 2rem; }
-    .slide-btn.next { right: 2rem; }
-
-    .slideshow-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .slide-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--muted-2);
-      cursor: pointer;
-      transition: all 0.3s var(--transition);
-      border: none;
-    }
-
-    .slide-dot.active { background: white; transform: scale(1.4); }
-    .slide-dot:hover:not(.active) { background: var(--muted); }
-
     /* Video player modal */
     .video-player-backdrop {
       display: none;
@@ -1866,21 +1751,6 @@
     </div>
   </div>
 
-  <!-- SLIDESHOW MODAL -->
-  <div id="slideshowModal" class="slideshow-backdrop">
-    <div class="slideshow-header">
-      <span class="slideshow-title" id="ssTitle"></span>
-      <span class="slideshow-counter" id="ssCounter"></span>
-      <button class="slideshow-close" onclick="closeSlideshow()">✕</button>
-    </div>
-    <div class="slideshow-body">
-      <button class="slide-btn prev" onclick="ssChange(-1)">‹</button>
-      <img id="ssImg" src="" alt="" class="slideshow-img">
-      <button class="slide-btn next" onclick="ssChange(1)">›</button>
-    </div>
-    <div class="slideshow-dots" id="ssDots"></div>
-  </div>
-
   <!-- VIDEO PLAYER MODAL -->
   <div id="videoPlayerModal" class="video-player-backdrop">
     <div class="video-player-header">
@@ -2117,46 +1987,12 @@
     function openWebGallery() { openModal('webModal'); }
 
     // ── SLIDESHOW ──
-    var ssSlides = [];
-    var ssIndex = 0;
-
     function openSlideshow(title, slides) {
-      ssSlides = slides;
-      ssIndex = 0;
-      document.getElementById('ssTitle').textContent = title;
-      document.getElementById('ssImg').src = slides[0];
-      buildDots();
-      updateSS();
-      document.getElementById('slideshowModal').classList.add('open');
+      openWebScroll(title, slides);
     }
 
     function closeSlideshow() {
-      document.getElementById('slideshowModal').classList.remove('open');
-    }
-
-    function ssChange(dir) {
-      ssIndex = (ssIndex + dir + ssSlides.length) % ssSlides.length;
-      document.getElementById('ssImg').src = ssSlides[ssIndex];
-      updateSS();
-    }
-
-    function buildDots() {
-      var d = document.getElementById('ssDots');
-      d.innerHTML = '';
-      ssSlides.forEach(function(_, i) {
-        var dot = document.createElement('button');
-        dot.className = 'slide-dot';
-        dot.onclick = function() { ssIndex = i; document.getElementById('ssImg').src = ssSlides[i]; updateSS(); };
-        d.appendChild(dot);
-      });
-    }
-
-    function updateSS() {
-      document.getElementById('ssCounter').textContent = (ssIndex+1) + ' / ' + ssSlides.length;
-      var dots = document.getElementById('ssDots').children;
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].classList.toggle('active', i === ssIndex);
-      }
+      closeWebScroll();
     }
 
     // ── VIDEO PLAYER ──
@@ -2185,6 +2021,11 @@
         var img = document.createElement('img');
         img.src = src;
         img.alt = title;
+        img.loading = 'lazy';
+        img.style.marginBottom = '0';
+        img.onerror = function() {
+          this.style.display = 'none';
+        };
         body.appendChild(img);
       });
       body.scrollTop = 0;
@@ -2211,11 +2052,8 @@
 
     // ── KEYBOARD NAVIGATION ──
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight' && document.getElementById('slideshowModal').classList.contains('open')) ssChange(1);
-      if (e.key === 'ArrowLeft' && document.getElementById('slideshowModal').classList.contains('open')) ssChange(-1);
       if (e.key === 'Escape') {
-        if (document.getElementById('slideshowModal').classList.contains('open')) closeSlideshow();
-        else if (document.getElementById('webScrollModal').classList.contains('open')) closeWebScroll();
+        if (document.getElementById('webScrollModal').classList.contains('open')) closeWebScroll();
         else if (document.getElementById('videoPlayerModal').classList.contains('open')) closeVideoPlayer();
         else if (document.getElementById('videoModal').classList.contains('open')) closeModal('videoModal');
         else if (document.getElementById('webModal').classList.contains('open')) closeModal('webModal');
