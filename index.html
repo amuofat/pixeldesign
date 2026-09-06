@@ -344,18 +344,105 @@ body.light .nav {
     background: var(--surface-strong);
 }
 
+.menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-btn span {
+    display: block;
+    width: 15px;
+    height: 1px;
+    background: currentColor;
+    transition: transform .3s var(--ease);
+}
+
+.menu-btn.active span:first-child {
+    transform: translateY(3px) rotate(45deg);
+}
+
+.menu-btn.active span:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+}
+
+.mobile-menu {
+    display: none;
+}
+
 @media(max-width:760px) {
     .nav {
         width: calc(100% - 20px);
         top: 10px;
+        padding-left: 16px;
     }
 
     .nav-links {
         display: none;
     }
 
+    .nav-actions {
+        margin-left: auto;
+    }
+
     .nav-actions .nav-pill:first-child {
         display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 82px;
+        left: 10px;
+        right: 10px;
+        z-index: 4999;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(8,8,12,.82);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        box-shadow: 0 25px 70px rgba(0,0,0,.22);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition: opacity .3s ease, transform .4s var(--ease), visibility .3s ease;
+    }
+
+    body.light .mobile-menu {
+        background: rgba(245,245,247,.9);
+    }
+
+    .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .mobile-menu a {
+        padding: 15px 16px;
+        border-radius: 14px;
+        color: var(--text-soft);
+        font-size: 13px;
+    }
+
+    .mobile-menu a:active,
+    .mobile-menu a:hover {
+        background: var(--surface);
+        color: var(--text);
     }
 }
 
@@ -596,12 +683,32 @@ body.light .nav {
 }
 
 @media(max-width:700px) {
+    .section {
+        width: calc(100% - 28px);
+        padding: 105px 0;
+    }
+
+    .hero {
+        min-height: 100svh;
+    }
+
     .hero-content {
         width: calc(100% - 28px);
+        padding-top: 75px;
     }
 
     .hero-title {
-        font-size: clamp(4rem, 19vw, 7rem);
+        font-size: clamp(3.5rem, 18vw, 6rem);
+        line-height: .82;
+    }
+
+    .hero-orb {
+        width: 430px;
+        height: 430px;
+    }
+
+    .cursor-glow {
+        display: none;
     }
 
     .hero-bottom {
@@ -1338,8 +1445,148 @@ footer {
    CONTACT FORM
    ========================================================= */
 
+.contact-layout {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, .8fr);
+    gap: clamp(45px, 8vw, 110px);
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-intro {
+    min-width: 0;
+}
+
+.contact-description {
+    max-width: 520px;
+    margin-top: 32px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.contact-direct {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 30px;
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.contact-direct a {
+    width: fit-content;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+}
+
 .contact-form {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: clamp(22px, 4vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--surface);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 25px 80px rgba(0,0,0,.14);
+}
+
+.contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-form label > span {
+    font-size: 10px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: rgba(255,255,255,.035);
+    color: var(--text);
+    outline: none;
+    padding: 14px 15px;
+    font-size: 12px;
+    transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+body.light .contact-form input,
+body.light .contact-form select,
+body.light .contact-form textarea {
+    background: rgba(0,0,0,.025);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--muted);
+}
+
+.contact-form select {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.contact-form option {
+    background: var(--bg-soft);
+    color: var(--text);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 0 3px rgba(128,103,255,.10);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 2px;
+}
+
+@media(max-width:900px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+}
+
+@media(max-width:560px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
 }
 
 /* =========================================================
@@ -1407,7 +1654,7 @@ html[dir="rtl"] .contact-bottom {
         PIXEL STUDIO
     </a>
 
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
         <a href="#work" data-i18n="navWork">Work</a>
         <a href="#services" data-i18n="navServices">Services</a>
         <a href="#about" data-i18n="navAbout">About</a>
@@ -1415,11 +1662,21 @@ html[dir="rtl"] .contact-bottom {
     </div>
 
     <div class="nav-actions">
-        <button class="nav-pill" id="languageBtn">EN</button>
-        <button class="nav-pill" id="themeBtn">☼</button>
+        <button type="button" class="nav-pill" id="languageBtn">EN</button>
+        <button type="button" class="nav-pill" id="themeBtn" aria-label="Toggle theme">☼</button>
+        <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span>
+        </button>
     </div>
 
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#work" data-i18n="navWork">Work</a>
+    <a href="#services" data-i18n="navServices">Services</a>
+    <a href="#about" data-i18n="navAbout">About</a>
+    <a href="#contact" data-i18n="navContact">Contact</a>
+</div>
 
 <!-- ======================================================
      HERO
@@ -1703,33 +1960,85 @@ html[dir="rtl"] .contact-bottom {
 
     <div class="contact-orb"></div>
 
-    <div>
+    <div class="contact-layout">
 
-        <div class="section-kicker">04 — Contact</div>
+        <div class="contact-intro">
+            <div class="section-kicker">04 — Contact</div>
 
-        <h2 class="contact-title">
-            LET'S MAKE<br>
-            <span class="gradient">SOMETHING.</span>
-        </h2>
+            <h2 class="contact-title">
+                LET'S MAKE<br>
+                <span class="gradient">SOMETHING.</span>
+            </h2>
 
-        <div class="contact-bottom">
+            <p class="contact-description" data-i18n="contactDescription">
+                Tell us what you have in mind. Choose the service you need,
+                share a few details, and we'll get back to you.
+            </p>
 
-            <div class="contact-email">
-                <span data-i18n="emailLabel">Email</span><br>
-                <a href="mailto:pixeldesigns.fr@gmail.com">
-                    pixeldesigns.fr@gmail.com
-                </a>
+            <div class="contact-direct">
+                <span data-i18n="emailLabel">Email</span>
+                <a href="mailto:pixeldesigns.fr@gmail.com">pixeldesigns.fr@gmail.com</a>
+            </div>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/pixeldesigns.fr@gmail.com" method="POST">
+
+            <input type="hidden" name="_subject" value="New Pixel Studio project inquiry">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://amuofat.github.io/pixeldesign/">
+
+            <div class="form-row">
+                <label>
+                    <span data-i18n="formName">Name</span>
+                    <input type="text" name="name" required autocomplete="name"
+                           data-i18n-placeholder="formNamePlaceholder"
+                           placeholder="Your name">
+                </label>
+
+                <label>
+                    <span data-i18n="formEmail">Email</span>
+                    <input type="email" name="email" required autocomplete="email"
+                           data-i18n-placeholder="formEmailPlaceholder"
+                           placeholder="you@example.com">
+                </label>
             </div>
 
-            <a
-                href="mailto:pixeldesigns.fr@gmail.com"
-                class="cta primary"
-                data-i18n="contactMe"
-            >
-                Contact Pixel Studio →
-            </a>
+            <label>
+                <span data-i18n="formService">What do you need?</span>
+                <select name="service" required>
+                    <option value="" data-i18n="formChoose">Choose a service</option>
+                    <option value="Brand Identity" data-i18n="formBrand">Brand Identity</option>
+                    <option value="Video Editing" data-i18n="formVideo">Video Editing</option>
+                    <option value="Web Design & Development" data-i18n="formWeb">Web Design & Development</option>
+                    <option value="Other" data-i18n="formOther">Other / Not sure yet</option>
+                </select>
+            </label>
 
-        </div>
+            <label>
+                <span data-i18n="formBudget">Budget</span>
+                <select name="budget">
+                    <option value="" data-i18n="formBudgetChoose">Choose a range</option>
+                    <option value="Under €100">Under €100</option>
+                    <option value="€100 – €300">€100 – €300</option>
+                    <option value="€300 – €600">€300 – €600</option>
+                    <option value="€600+">€600+</option>
+                    <option value="Let's discuss" data-i18n="formBudgetDiscuss">Let's discuss</option>
+                </select>
+            </label>
+
+            <label>
+                <span data-i18n="formMessage">Tell us about your project</span>
+                <textarea name="message" rows="6" required
+                          data-i18n-placeholder="formMessagePlaceholder"
+                          placeholder="What are you looking to create?"></textarea>
+            </label>
+
+            <button type="submit" class="cta primary form-submit" data-i18n="formSubmit">
+                Send inquiry →
+            </button>
+
+        </form>
 
     </div>
 
@@ -2019,7 +2328,24 @@ const translations = {
         response: "Response",
 
         emailLabel: "Email",
-        contactMe: "Contact Pixel Studio →"
+        contactMe: "Contact Pixel Studio →",
+        contactDescription: "Tell us what you have in mind. Choose the service you need, share a few details, and we'll get back to you.",
+        formName: "Name",
+        formNamePlaceholder: "Your name",
+        formEmail: "Email",
+        formEmailPlaceholder: "you@example.com",
+        formService: "What do you need?",
+        formChoose: "Choose a service",
+        formBrand: "Brand Identity",
+        formVideo: "Video Editing",
+        formWeb: "Web Design & Development",
+        formOther: "Other / Not sure yet",
+        formBudget: "Budget",
+        formBudgetChoose: "Choose a range",
+        formBudgetDiscuss: "Let's discuss",
+        formMessage: "Tell us about your project",
+        formMessagePlaceholder: "What are you looking to create?",
+        formSubmit: "Send inquiry →"
     },
 
     fr: {
@@ -2055,7 +2381,24 @@ const translations = {
         response: "Réponse",
 
         emailLabel: "Email",
-        contactMe: "Contacter Pixel Studio →"
+        contactMe: "Contacter Pixel Studio →",
+        contactDescription: "Expliquez-nous votre idée. Choisissez le service dont vous avez besoin, partagez quelques détails et nous vous répondrons rapidement.",
+        formName: "Nom",
+        formNamePlaceholder: "Votre nom",
+        formEmail: "Email",
+        formEmailPlaceholder: "vous@exemple.com",
+        formService: "De quoi avez-vous besoin ?",
+        formChoose: "Choisissez un service",
+        formBrand: "Identité visuelle",
+        formVideo: "Montage vidéo",
+        formWeb: "Web Design & Développement",
+        formOther: "Autre / Pas encore sûr",
+        formBudget: "Budget",
+        formBudgetChoose: "Choisissez une fourchette",
+        formBudgetDiscuss: "À discuter",
+        formMessage: "Parlez-nous de votre projet",
+        formMessagePlaceholder: "Que souhaitez-vous créer ?",
+        formSubmit: "Envoyer la demande →"
     },
 
     ar: {
@@ -2091,7 +2434,24 @@ const translations = {
         response: "سرعة الرد",
 
         emailLabel: "البريد الإلكتروني",
-        contactMe: "تواصل مع Pixel Studio →"
+        contactMe: "تواصل مع Pixel Studio →",
+        contactDescription: "أخبرنا بما تفكر فيه. اختر الخدمة التي تحتاجها، شارك بعض التفاصيل وسنتواصل معك.",
+        formName: "الاسم",
+        formNamePlaceholder: "اسمك",
+        formEmail: "البريد الإلكتروني",
+        formEmailPlaceholder: "you@example.com",
+        formService: "ما الذي تحتاجه؟",
+        formChoose: "اختر خدمة",
+        formBrand: "الهوية البصرية",
+        formVideo: "مونتاج الفيديو",
+        formWeb: "تصميم وتطوير المواقع",
+        formOther: "أخرى / لست متأكدًا بعد",
+        formBudget: "الميزانية",
+        formBudgetChoose: "اختر نطاقًا",
+        formBudgetDiscuss: "لنتناقش",
+        formMessage: "أخبرنا عن مشروعك",
+        formMessagePlaceholder: "ماذا تريد أن نصمم أو ننفذ لك؟",
+        formSubmit: "إرسال الطلب →"
     }
 
 };
@@ -2123,6 +2483,14 @@ function setLanguage(lang) {
                     translations[lang][key];
             }
 
+        });
+
+    document.querySelectorAll("[data-i18n-placeholder]")
+        .forEach(element => {
+            const key = element.dataset.i18nPlaceholder;
+            if (translations[lang][key]) {
+                element.placeholder = translations[lang][key];
+            }
         });
 
     document.getElementById("languageBtn").textContent =
@@ -2165,6 +2533,30 @@ function updateThemeIcon() {
 }
 
 updateThemeIcon();
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove("open");
+    menuBtn.classList.remove("active");
+    menuBtn.setAttribute("aria-expanded", "false");
+}
+
+menuBtn.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuBtn.classList.toggle("active", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+});
+
+mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMobileMenu);
+});
+
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) closeMobileMenu();
+});
+
 
 document.getElementById("themeBtn")
     .addEventListener("click", () => {
